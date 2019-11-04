@@ -17,7 +17,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Routes
-app.use('/api', jwtFunctions);
+//TODO uncomment this line
+//app.use('/api', jwtFunctions);
 app.use('/api', require('./controllers/games.controller'));
 app.use('/api', require('./controllers/class.controller'));
 app.use('/api', require('./controllers/users.controller'));
