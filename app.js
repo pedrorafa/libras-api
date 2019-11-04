@@ -25,7 +25,20 @@ app.use('/api', require('./controllers/users.controller'));
 app.use('/auth', require('./controllers/auth.controller'));
 
 //Cors
-app.use(cors())
+var originsWhitelist = [
+    'http://localhost:4200',
+    'https://localhost:4200',
+    'http://libras-web.herokuapp.com/',
+    'https://libras-web.herokuapp.com/'
+];
+
+//app.use(cors)
+app.use('/', function (req, res) {
+    res.setHeader("Access-Control-Allow-Origin", originsWhitelist);
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader("Access-Control-Allow-Headers", "*");
+    res.end();
+  });
 
 // Start server
 const port = process.env.PORT || process.env.API_PORT
