@@ -3,6 +3,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var cors = require('cors');
+var proxy = require('./proxy')
 var jwtFunctions = require('./jwt')
 require('./env')
 
@@ -19,26 +20,11 @@ app.use(bodyParser.json());
 // Routes
 //TODO uncomment this line
 //app.use('/api', jwtFunctions);
+app.use('/api', proxy);
 app.use('/api', require('./controllers/games.controller'));
 app.use('/api', require('./controllers/class.controller'));
 app.use('/api', require('./controllers/users.controller'));
 app.use('/auth', require('./controllers/auth.controller'));
-
-//Cors
-var originsWhitelist = [
-    'http://localhost:4200',
-    'https://localhost:4200',
-    'http://libras-web.herokuapp.com/',
-    'https://libras-web.herokuapp.com/'
-];
-
-//app.use(cors)
-app.use('/api', function (req, res) {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader('Access-Control-Allow-Methods', '*');
-    res.setHeader("Access-Control-Allow-Headers", "*");
-    res.end();
-  });
 
 // Start server
 const port = process.env.PORT || process.env.API_PORT
