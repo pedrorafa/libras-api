@@ -3,6 +3,8 @@ var mongoose = require('mongoose');
 // Schema
 var schema = new mongoose.Schema({
     idGames: [String],
+    Title: String,
+    Description: String,
     Level: Number,
     Duration: Number,
     createAt: Date
