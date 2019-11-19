@@ -18,13 +18,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Routes
+app.use('/', proxy);
+
 app.use('/api', jwtFunctions);
-app.use('/api', proxy);
 app.use('/api', require('./controllers/games.controller'));
 app.use('/api', require('./controllers/class.controller'));
 app.use('/api', require('./controllers/users.controller'));
 
-app.use('/auth', proxy);
 app.use('/auth', require('./controllers/auth.controller'));
 
 // Start server
