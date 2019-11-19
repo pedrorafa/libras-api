@@ -7,6 +7,7 @@ var schema = new mongoose.Schema({
     Description: String,
     Level: Number,
     Duration: Number,
+    ClassDate: Date,
     createAt: Date
 });
 var model = mongoose.model('Classes', schema);
