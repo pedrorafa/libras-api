@@ -7,7 +7,8 @@ var schema = new mongoose.Schema({
     scores: [{
         idGame: String,
         grade: Number
-    }] 
+    }],
+    isTeacher: Boolean
 });
 var model = mongoose.model('Users', schema);
 
