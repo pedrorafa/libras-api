@@ -17,8 +17,7 @@ router.post('/login', (req, res, next) => {
             var token = jwt.sign({ id }, process.env.API_SECRET, {
                 expiresIn: 300 // expires in 5min
             });
-            return res.status(200).send({ auth: true, token: token, isTeacher: this.user["isTeacher"] });
-
+            return res.status(200).send({ auth: true, token: token, isTeacher: user["isTeacher"] });
         }
         return res.status(500).send('Login inválido!');
     })
