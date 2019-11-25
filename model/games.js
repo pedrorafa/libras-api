@@ -5,6 +5,7 @@ var schema = new mongoose.Schema({
     Name: String,
     Level: Number,
     Type: String,
+    Link: String,
     Description: String,
     Data: JSON
 });
