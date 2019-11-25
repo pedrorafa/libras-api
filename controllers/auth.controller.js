@@ -18,13 +18,27 @@ router.post('/login', (req, res, next) => {
                 expiresIn: 300 // expires in 5min
             });
             return res.status(200).send({ auth: true, token: token });
-            
+
         }
         return res.status(500).send('Login inválido!');
     })
 })
 router.get('/logout', (req, res) => {
     res.status(200).send({ auth: false, token: null });
+})
+router.post('/register', (req, res) => {
+
+    userModel.findOne({ username: req.body.username }, (err, user) => {
+        if (user === null) {
+            userModel.insertOne(req.body, (err, res) => {
+                if (err)
+                    return res.status(500).send({ message: err.message })
+            })
+        }
+        else
+            return res.status(200).send({ message: 'Usuário já existe!' })
+
+    })
 })
 
 // Return router
