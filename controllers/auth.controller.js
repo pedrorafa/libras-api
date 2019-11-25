@@ -30,14 +30,14 @@ router.post('/register', (req, res) => {
 
     userModel.findOne({ username: req.body.username }, (err, user) => {
         if (user === null) {
-            userModel.insertOne(req.body, (err, res) => {
+            userModel.insertMany([req.body], (err, data) => {
                 if (err)
-                    return res.status(500).send({ message: err.message })
+                    return res.status(500).send({ message: err })
+                return res.status(200).send({ success: true, message: "Usuário foi cadastrado!" })
             })
         }
         else
             return res.status(200).send({ message: 'Usuário já existe!' })
-
     })
 })
 
