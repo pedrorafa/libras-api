@@ -2,9 +2,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-var cors = require('cors');
 var proxy = require('./proxy')
-var jwtFunctions = require('./jwt')
 require('./env')
 
 // MongoDB
@@ -19,12 +17,9 @@ app.use(bodyParser.json());
 
 // Routes
 app.use('/', proxy);
-
-app.use('/api', jwtFunctions);
 app.use('/api', require('./controllers/games.controller'));
 app.use('/api', require('./controllers/class.controller'));
 app.use('/api', require('./controllers/users.controller'));
-
 app.use('/auth', require('./controllers/auth.controller'));
 
 // Start server
